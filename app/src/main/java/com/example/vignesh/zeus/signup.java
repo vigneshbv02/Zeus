@@ -8,13 +8,16 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.android.volley.AuthFailureError;
+import com.android.volley.NoConnectionError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
+import com.android.volley.TimeoutError;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 
 import java.util.HashMap;
+import java.util.Hashtable;
 import java.util.Map;
 
 import static com.android.volley.toolbox.Volley.newRequestQueue;
@@ -27,7 +30,7 @@ public class signup extends AppCompatActivity {
         setContentView(R.layout.activity_signup);
     }
 
-    public void signup(View view)
+    public void sign_up(View view)
     {
         final EditText editText=findViewById(R.id.editText7);
         final EditText editText1=findViewById(R.id.editText2);
@@ -46,26 +49,38 @@ public class signup extends AppCompatActivity {
             }
             else
             {
-                StringRequest stringRequest=new StringRequest(Request.Method.POST, "", new Response.Listener<String>() {
+                StringRequest stringRequest=new StringRequest(Request.Method.POST, "http://zeus75.herokuapp.com/signup", new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
+                        if(response.equals("success"))
+                        {
+                            Toast.makeText(getApplicationContext(),"Signup success",Toast.LENGTH_LONG).show();
+                            Intent intent=new Intent(getApplicationContext(),Login.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                        else
+                        {
+                            Toast.makeText(getApplicationContext(),"Something went wrong, Try again",Toast.LENGTH_LONG).show();
+                        }
                     }
                 }, new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        if(error instanceof NoConnectionError || error instanceof TimeoutError)
+                        {
+                            Toast.makeText(getApplicationContext(),"Check your internet connectivity and try again",Toast.LENGTH_LONG).show();
+                        }
                     }
                 })
                 {
                     @Override
                     protected Map<String, String> getParams() throws AuthFailureError {
-                        HashMap<String,String> hashMap=new HashMap<>();
-                        hashMap.put("",editText.getText().toString());
-                        hashMap.put("",editText1.getText().toString());
-                        hashMap.put("",editText2.getText().toString());
-                        hashMap.put("",editText3.getText().toString());
-                        return hashMap;
+                        Map<String,String> stringMap=new Hashtable<>();
+                        stringMap.put("phone",editText.getText().toString());
+                        stringMap.put("name",editText1.getText().toString());
+                        stringMap.put("password",editText2.getText().toString());
+                        return stringMap;
                     }
                 };
 

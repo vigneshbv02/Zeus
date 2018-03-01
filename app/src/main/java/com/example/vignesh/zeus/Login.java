@@ -41,7 +41,7 @@ public class Login extends AppCompatActivity {
         }
         else
         {
-            StringRequest stringRequest=new StringRequest(Request.Method.POST, "", new Response.Listener<String>() {
+            StringRequest stringRequest=new StringRequest(Request.Method.POST, "http://zeus75.herokuapp.com/signup", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if(response.equals("success"))
@@ -68,8 +68,8 @@ public class Login extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     HashMap<String,String> stringStringHashMap=new HashMap<>();
-                    stringStringHashMap.put("",editText.getText().toString());
-                    stringStringHashMap.put("",editText1.getText().toString());
+                    stringStringHashMap.put("phone",editText.getText().toString());
+                    stringStringHashMap.put("password",editText1.getText().toString());
                     return stringStringHashMap;
                 }
             };
