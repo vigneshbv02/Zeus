@@ -1,6 +1,8 @@
 package com.example.vignesh.zeus;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -28,9 +30,20 @@ public class MainActivity extends AppCompatActivity {
                 try
                 {
                     Thread.sleep(3000);
-                    Intent intent=new Intent(getApplicationContext(),Login.class);
-                    startActivity(intent);
-                    finish();
+                    SharedPreferences sharedPreferences=getSharedPreferences("zeus", Context.MODE_PRIVATE);
+                    String val=sharedPreferences.getString("phone","default");
+                    if(val.equals("default"))
+                    {
+                        Intent intent=new Intent(getApplicationContext(),Login.class);
+                        startActivity(intent);
+                        finish();
+                    }
+                    else
+                    {
+                        Intent intent=new Intent(getApplicationContext(),home.class);
+                        startActivity(intent);
+                        finish();
+                    }
                 }
                 catch (Exception e)
                 {

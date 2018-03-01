@@ -1,6 +1,8 @@
 package com.example.vignesh.zeus;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -41,7 +43,7 @@ public class Login extends AppCompatActivity {
         }
         else
         {
-            StringRequest stringRequest=new StringRequest(Request.Method.POST, "", new Response.Listener<String>() {
+            StringRequest stringRequest=new StringRequest(Request.Method.POST, "http://zeus75.herokuapp.com/login", new Response.Listener<String>() {
                 @Override
                 public void onResponse(String response) {
                     if(response.equals("success"))
@@ -49,6 +51,11 @@ public class Login extends AppCompatActivity {
                         Intent intent=new Intent(getApplicationContext(),home.class);
                         startActivity(intent);
                         Toast.makeText(getApplicationContext(),"Welcome to zeus",Toast.LENGTH_LONG).show();
+
+                        SharedPreferences sharedPreferences=getSharedPreferences("zeus", Context.MODE_PRIVATE);
+                        SharedPreferences.Editor editor=sharedPreferences.edit();
+                        editor.putString("phone",editText.getText().toString());
+                        editor.apply();
                         finish();
                     }
                     else
@@ -68,8 +75,8 @@ public class Login extends AppCompatActivity {
                 @Override
                 protected Map<String, String> getParams() throws AuthFailureError {
                     HashMap<String,String> stringStringHashMap=new HashMap<>();
-                    stringStringHashMap.put("",editText.getText().toString());
-                    stringStringHashMap.put("",editText1.getText().toString());
+                    stringStringHashMap.put("phone",editText.getText().toString());
+                    stringStringHashMap.put("password",editText1.getText().toString());
                     return stringStringHashMap;
                 }
             };
