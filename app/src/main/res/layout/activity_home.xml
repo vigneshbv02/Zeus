@@ -5,7 +5,130 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-
     tools:context="com.example.vignesh.zeus.home">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/main_content">
+
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginRight="20dp"
+        android:clickable="true"
+        app:srcCompat="@mipmap/plus_icon"
+        android:elevation="6sp"
+        app:pressedTranslationZ="12sp"/>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/floatingActionButton"
+        android:layout_alignEnd="@+id/floatingActionButton"
+        android:layout_alignRight="@+id/floatingActionButton"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@android:color/holo_blue_light"
+        app:srcCompat="@mipmap/trip_plan" />
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/floatingActionButton2"
+        android:layout_alignLeft="@+id/floatingActionButton2"
+        android:layout_alignStart="@+id/floatingActionButton2"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        app:backgroundTint="@android:color/holo_green_light"
+        app:srcCompat="@mipmap/add_car" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout_float_1"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/floatingActionButton2"
+        android:layout_toLeftOf="@+id/floatingActionButton2"
+        android:layout_toStartOf="@+id/floatingActionButton2"
+        android:layout_alignBottom="@+id/floatingActionButton2">
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Trip plan"
+            android:padding="10sp"
+            android:textSize="15sp"
+            android:textColor="@android:color/holo_blue_light"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout_float_2"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/floatingActionButton3"
+        android:layout_toLeftOf="@+id/floatingActionButton3"
+        android:layout_toStartOf="@+id/floatingActionButton3"
+        android:layout_alignBottom="@+id/floatingActionButton3">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Add car"
+            android:padding="10sp"
+            android:textSize="15sp"
+            android:textColor="@android:color/holo_green_light"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
+
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/floatingActionButton4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/floatingActionButton3"
+        android:layout_alignEnd="@+id/floatingActionButton3"
+        android:layout_alignRight="@+id/floatingActionButton3"
+        android:layout_marginBottom="10dp"
+        android:clickable="true"
+        android:visibility="invisible"
+        android:backgroundTint="@android:color/holo_purple"
+        app:srcCompat="@mipmap/send_msg" />
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/relativeLayout_float_3"
+        android:visibility="invisible"
+        android:layout_alignTop="@+id/floatingActionButton4"
+        android:layout_toLeftOf="@+id/floatingActionButton4"
+        android:layout_toStartOf="@+id/floatingActionButton4"
+        android:layout_alignBottom="@+id/floatingActionButton4">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Send Message"
+            android:padding="10sp"
+            android:textSize="15sp"
+            android:textColor="@android:color/holo_purple"
+            android:layout_centerInParent="true"/>
+    </RelativeLayout>
 
 </RelativeLayout>
