@@ -103,12 +103,12 @@
         android:layout_height="wrap_content"
         android:layout_above="@+id/floatingActionButton3"
         android:layout_alignEnd="@+id/floatingActionButton3"
-        android:layout_alignRight="@+id/floatingActionButton3"
         android:layout_marginBottom="10dp"
         android:clickable="true"
         android:visibility="invisible"
         android:backgroundTint="@android:color/holo_purple"
-        app:srcCompat="@mipmap/send_msg" />
+        app:srcCompat="@mipmap/send_msg"
+        android:focusable="true" />
 
     <RelativeLayout
         android:layout_width="wrap_content"

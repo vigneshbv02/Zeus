@@ -131,6 +131,7 @@ public class home extends AppCompatActivity {
                         String message=jsonObject.getString("id");
                         JSONObject jsonObject1=new JSONObject();
                         jsonObject1.put("id",message);
+                        jsonObject1.put("category","phone");
                         jsonObject1.put("no",getSharedPreferences("zeus", Context.MODE_PRIVATE).getString("phone","default"));
                         socket.emit("register",jsonObject1.toString());
                     }
