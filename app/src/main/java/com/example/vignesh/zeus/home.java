@@ -183,6 +183,15 @@ public class home extends AppCompatActivity implements RequestQueue.RequestFinis
         socket.connect();
         socket.on("message",get_id);
 
+        floatingActionButton3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+              send_message send=new send_message();
+send.show(getSupportFragmentManager(),"send message");
+            }
+        });
+
+
     }
 
     Emitter.Listener get_id=new Emitter.Listener() {
