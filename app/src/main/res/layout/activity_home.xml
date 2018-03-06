@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
+<ScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/ds">
+
+<RelativeLayout
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     tools:context="com.example.vignesh.zeus.home">
 
     <RelativeLayout
@@ -16,13 +22,17 @@
             android:layout_width="match_parent"
             android:layout_height="250sp"
             android:layout_margin="5sp"
-            android:id="@+id/bar_chart"/>
+            android:id="@+id/bar_chart"
+            android:background="@android:color/white"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignStart="@+id/bar_chart"
-            android:layout_below="@+id/bar_chart">
+            android:layout_below="@+id/bar_chart"
+            android:id="@+id/rel_1"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp">
 
             <TextView
                 android:id="@+id/textView12"
@@ -30,7 +40,179 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:text="TextView"/>
+                android:textColor="@android:color/white"/>
+
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bar_chart"
+            android:layout_below="@+id/rel_1"
+            android:id="@+id/rel_2"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp">
+
+            <TextView
+                android:id="@+id/textView13"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bar_chart"
+            android:layout_below="@+id/rel_2"
+            android:id="@+id/rel_3"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp">
+
+            <TextView
+                android:id="@+id/textView14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bar_chart"
+            android:layout_below="@+id/rel_3"
+            android:id="@+id/rel_4"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp">
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bar_chart"
+            android:layout_below="@+id/rel_4"
+            android:id="@+id/rel_5"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp">
+
+            <TextView
+                android:id="@+id/textView16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bar_chart"
+            android:layout_below="@+id/rel_5"
+            android:id="@+id/rel_6"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp">
+
+            <TextView
+                android:id="@+id/textView17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bar_chart"
+            android:layout_below="@+id/rel_6"
+            android:id="@+id/rel_7"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp">
+
+            <TextView
+                android:id="@+id/textView18"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bar_chart"
+            android:layout_below="@+id/rel_7"
+            android:id="@+id/rel_8"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp">
+
+            <TextView
+                android:id="@+id/textView19"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bar_chart"
+            android:layout_below="@+id/rel_8"
+            android:id="@+id/rel_9"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp">
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"/>
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bar_chart"
+            android:layout_below="@+id/rel_9"
+            android:id="@+id/rel_10"
+            android:paddingTop="10sp"
+            android:paddingBottom="10sp">
+
+            <TextView
+                android:id="@+id/textView21"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:textAlignment="textStart"
+                android:textColor="@android:color/white"/>
         </RelativeLayout>
 
     </RelativeLayout>
@@ -39,11 +221,11 @@
         android:id="@+id/floatingActionButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_alignParentTop="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
         android:layout_marginBottom="20dp"
-        android:layout_marginEnd="20dp"
+        android:layout_marginTop="450dp"
         android:layout_marginRight="20dp"
         android:clickable="true"
         app:srcCompat="@mipmap/plus_icon"
@@ -54,10 +236,10 @@
         android:id="@+id/floatingActionButton2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/floatingActionButton"
-        android:layout_alignEnd="@+id/floatingActionButton"
-        android:layout_alignRight="@+id/floatingActionButton"
-        android:layout_marginBottom="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="390dp"
         android:clickable="true"
         android:visibility="invisible"
         app:backgroundTint="@android:color/holo_blue_light"
@@ -67,11 +249,10 @@
         android:id="@+id/floatingActionButton3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/floatingActionButton2"
-        android:layout_alignLeft="@+id/floatingActionButton2"
-        android:layout_alignStart="@+id/floatingActionButton2"
-        android:layout_marginBottom="10dp"
-        android:clickable="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="330dp"
         android:visibility="invisible"
         app:backgroundTint="@android:color/holo_green_light"
         app:srcCompat="@mipmap/add_car" />
@@ -122,9 +303,10 @@
         android:id="@+id/floatingActionButton4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/floatingActionButton3"
-        android:layout_alignEnd="@+id/floatingActionButton3"
-        android:layout_marginBottom="10dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="16dp"
+        android:layout_marginTop="270dp"
         android:clickable="true"
         android:visibility="invisible"
         android:backgroundTint="@android:color/holo_purple"
@@ -151,5 +333,5 @@
             android:textColor="@android:color/holo_purple"
             android:layout_centerInParent="true"/>
     </RelativeLayout>
-
 </RelativeLayout>
+</ScrollView>
