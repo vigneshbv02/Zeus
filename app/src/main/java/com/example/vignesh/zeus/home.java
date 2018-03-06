@@ -51,6 +51,9 @@ public class home extends AppCompatActivity implements RequestQueue.RequestFinis
     FloatingActionButton floatingActionButton,floatingActionButton1,floatingActionButton2,floatingActionButton3;
     RelativeLayout relativeLayout,relativeLayout1,relativeLayout2;
     Animation animation1,animation2,animation3,animation4;
+    TextView textView1,textView2,textView3,textView4,textView5,textView6,textView7,textView8,textView9,textView10;
+
+    String date="",time="";
 
     String car_reg_no="";
 
@@ -80,6 +83,17 @@ public class home extends AppCompatActivity implements RequestQueue.RequestFinis
 
 
         horizontalBarChart=findViewById(R.id.bar_chart);
+
+        textView1=findViewById(R.id.textView12);
+        textView2=findViewById(R.id.textView13);
+        textView3=findViewById(R.id.textView14);
+        textView4=findViewById(R.id.textView15);
+        textView5=findViewById(R.id.textView16);
+        textView6=findViewById(R.id.textView17);
+        textView7=findViewById(R.id.textView18);
+        textView8=findViewById(R.id.textView19);
+        textView9=findViewById(R.id.textView20);
+        textView10=findViewById(R.id.textView21);
 
         floatingActionButton=findViewById(R.id.floatingActionButton);
         floatingActionButton1=findViewById(R.id.floatingActionButton2);
@@ -158,6 +172,14 @@ public class home extends AppCompatActivity implements RequestQueue.RequestFinis
             }
         });
 
+        floatingActionButton1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Tripplan tripplan=new Tripplan();
+                tripplan.show(getSupportFragmentManager(),"tripplan");
+            }
+        });
+
         socket.connect();
         socket.on("message",get_id);
 
@@ -194,6 +216,24 @@ public class home extends AppCompatActivity implements RequestQueue.RequestFinis
             @Override
             public void onResponse(String response) {
                 Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+                try
+                {
+                    JSONObject jsonObject=new JSONObject(response);
+                    textView1.setText(new StringBuilder("Type = "+jsonObject.getString("type")));
+                    textView2.setText(new StringBuilder("Mileage = "+jsonObject.getString("mileage")));
+                    textView3.setText(new StringBuilder("Service date = "+jsonObject.getString("service_date")));
+                    textView4.setText(new StringBuilder("Throttle position = "+jsonObject.getString("Throttle_Position")));
+                    textView5.setText(new StringBuilder("Coolent temperature = "+jsonObject.getString("coolent_temperature")));
+                    textView6.setText(new StringBuilder("Engine load = "+jsonObject.getString("engine_load")));
+                    textView7.setText(new StringBuilder("Barometric pressure = "+jsonObject.getString("barometric_pressure")));
+                    textView8.setText(new StringBuilder("Power Supply = "+jsonObject.getString("power_supply")));
+                    textView9.setText(new StringBuilder("Trouble codes = "+jsonObject.getString("trouble_codes")));
+                    textView10.setText(new StringBuilder("Km = "+jsonObject.getString("km")));
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
