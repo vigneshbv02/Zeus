@@ -8,16 +8,51 @@ import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.NoConnectionError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.TimeoutError;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.github.mikephil.charting.charts.BarChart;
+import com.github.mikephil.charting.charts.HorizontalBarChart;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.AxisBase;
+import com.github.mikephil.charting.components.Description;
+import com.github.mikephil.charting.components.XAxis;
+import com.github.mikephil.charting.data.BarData;
+import com.github.mikephil.charting.data.BarDataSet;
+import com.github.mikephil.charting.data.BarEntry;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.formatter.IAxisValueFormatter;
 import com.github.nkzawa.emitter.Emitter;
 import com.github.nkzawa.socketio.client.IO;
 import com.github.nkzawa.socketio.client.Socket;
+
+import org.json.JSONArray;
 import org.json.JSONObject;
 
-public class home extends AppCompatActivity {
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import static com.android.volley.toolbox.Volley.newRequestQueue;
+
+public class home extends AppCompatActivity implements RequestQueue.RequestFinishedListener<Object> {
 
     FloatingActionButton floatingActionButton,floatingActionButton1,floatingActionButton2,floatingActionButton3;
     RelativeLayout relativeLayout,relativeLayout1,relativeLayout2;
     Animation animation1,animation2,animation3,animation4;
+
+    String car_reg_no="";
 
     boolean isopen=false;
 
@@ -33,10 +68,18 @@ public class home extends AppCompatActivity {
         }
     }
 
+    BarChart horizontalBarChart;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        connect_car connect_car=new connect_car();
+        connect_car.show(getSupportFragmentManager(),"Connect car");
+
+
+        horizontalBarChart=findViewById(R.id.bar_chart);
 
         floatingActionButton=findViewById(R.id.floatingActionButton);
         floatingActionButton1=findViewById(R.id.floatingActionButton2);
@@ -143,4 +186,104 @@ public class home extends AppCompatActivity {
             });
         }
     };
+
+    public void setdata()
+    {
+        Toast.makeText(getApplicationContext(),new StringBuilder("Connecting to "+car_reg_no),Toast.LENGTH_SHORT).show();
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, "http://zeus75.herokuapp.com/car_data", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if(error instanceof TimeoutError||error instanceof NoConnectionError)
+                {
+                    Toast.makeText(getApplicationContext(),"No network connectivity.. Try again",Toast.LENGTH_SHORT).show();
+                }
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String,String> hashMap=new HashMap<>();
+                hashMap.put("car",car_reg_no);
+                return hashMap;
+            }
+        };
+        RequestQueue requestQueue=newRequestQueue(this);
+        requestQueue.add(stringRequest);
+        requestQueue.addRequestFinishedListener(this);
+    }
+
+    @Override
+    public void onRequestFinished(Request<Object> request) {
+        get_fuel_data();
+    }
+
+    private void get_fuel_data() {
+        StringRequest stringRequest=new StringRequest(Request.Method.POST, "http://zeus75.herokuapp.com/fuel_data", new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                Toast.makeText(getApplicationContext(),response,Toast.LENGTH_SHORT).show();
+
+                final HashMap<Integer, String>numMap = new HashMap<>();
+                ArrayList<Integer> integers=new ArrayList<>();
+
+                try
+                {
+                    JSONObject jsonObject=new JSONObject(response);
+                    String jsonArray=jsonObject.getString("_id");
+                    String consumption=jsonObject.getString("consumption");
+                    JSONObject jsonObject1=new JSONObject(consumption);
+                    Toast.makeText(getApplicationContext(),jsonArray,Toast.LENGTH_SHORT).show();
+                    //Setting Manually
+                    ArrayList<BarEntry> entries=new ArrayList<>();
+                    entries.add(new BarEntry(4f,0));
+                    entries.add(new BarEntry(8f,1));
+                    entries.add(new BarEntry(6f,2));
+                    entries.add(new BarEntry(12f,3));
+                    entries.add(new BarEntry(18f,4));
+                    entries.add(new BarEntry(9f,5));
+
+                    BarDataSet barDataSet=new BarDataSet(entries,"No of liters");
+
+                    ArrayList<String> strings=new ArrayList<>();
+                    strings.add("28 Feb 2018");
+                    strings.add("01 Mar 2018");
+                    strings.add("03 Mar 2018");
+                    strings.add("07 Mar 2018");
+                    strings.add("10 Mar 2018");
+
+                    BarData barData=new BarData(barDataSet);
+                    horizontalBarChart.setData(barData);
+
+                }
+                catch (Exception e)
+                {
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                if(error instanceof TimeoutError||error instanceof NoConnectionError)
+                {
+                    Toast.makeText(getApplicationContext(),"No network connectivity.. Try again",Toast.LENGTH_SHORT).show();
+                }
+            }
+        })
+        {
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                HashMap<String,String> hashMap=new HashMap<>();
+                hashMap.put("car",car_reg_no);
+                return hashMap;
+            }
+        };
+        RequestQueue requestQueue=newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
 }

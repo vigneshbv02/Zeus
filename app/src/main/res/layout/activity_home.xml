@@ -12,6 +12,27 @@
         android:layout_height="match_parent"
         android:id="@+id/main_content">
 
+        <com.github.mikephil.charting.charts.BarChart
+            android:layout_width="match_parent"
+            android:layout_height="250sp"
+            android:layout_margin="5sp"
+            android:id="@+id/bar_chart"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/bar_chart"
+            android:layout_below="@+id/bar_chart">
+
+            <TextView
+                android:id="@+id/textView12"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:text="TextView"/>
+        </RelativeLayout>
+
     </RelativeLayout>
 
     <android.support.design.widget.FloatingActionButton

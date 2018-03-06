@@ -20,8 +20,6 @@ import org.json.JSONObject;
 
 public class Add_car extends DialogFragment {
 
-
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View v= inflater.inflate(R.layout.fragment_add_car, container, false);
